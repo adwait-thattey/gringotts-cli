@@ -1,0 +1,22 @@
+{
+  "name": "gringotts-cli",
+  "version": "0.0.1",
+  "description": "Command line interface for gringotts server",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adwait-thattey/gringotts-cli.git"
+  },
+  "keywords": [
+    "gringotts"
+  ],
+  "author": "Adwait Thattey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adwait-thattey/gringotts-cli/issues"
+  },
+  "homepage": "https://github.com/adwait-thattey/gringotts-cli#readme"
+}
