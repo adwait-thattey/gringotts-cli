@@ -1,0 +1,1 @@
+CUR_USER_TOKEN = None
