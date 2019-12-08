@@ -1,9 +1,12 @@
+from colorama import Fore
+
 import constants
 import os
 
 import log
 import shared
 import random
+import colorama
 
 
 def enforce_types(*types, return_type=None):
@@ -27,3 +30,43 @@ def enforce_types(*types, return_type=None):
     return decorator
 
 
+def colorprint(*args, **kwargs):
+    foreground = kwargs.get('foreground', None)
+    background = kwargs.get('background', None)
+    style = kwargs.get('style', None)
+    end = "\n"
+    if "end" in kwargs:
+        end = kwargs['end']
+
+    message = " ".join([str(arg) for arg in args])
+
+    print(foreground, end="") if foreground else ""
+    print(background, end="") if background else ""
+    print(style, end="") if style else ""
+    print(message, end=end)
+    print(colorama.Style.RESET_ALL, end=end)
+
+
+def get_numerical_choice(inp_string, start, end):
+    choice = input(inp_string)
+    try:
+        choice = int(choice)
+    except ValueError:
+        colorprint("Enter a valid choice", foreground=Fore.RED)
+        return get_numerical_choice(inp_string, start, end)
+
+    if not start <= choice <= end:
+        colorprint("Enter a valid choice", foreground=Fore.RED)
+        return get_numerical_choice(inp_string, start, end)
+
+    return choice
+
+
+def get_choice(inp_string, validator):
+    choice = input(inp_string)
+
+    if not validator(choice):
+        colorprint("Enter a valid choice", foreground=Fore.RED)
+        return get_choice(inp_string, validator)
+
+    return choice
